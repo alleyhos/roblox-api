@@ -9,3 +9,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("🚀 Roblox API running on", PORT);
 });
+
+client.login(process.env.TOKEN);
