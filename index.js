@@ -2,6 +2,7 @@
 // 기본 모듈
 // ==============================
 console.log("DISCORD_TOKEN:", process.env.DISCORD_TOKEN ? "LOADED" : "MISSING");
+
 const express = require("express");
 const { Client, GatewayIntentBits } = require("discord.js");
 
@@ -9,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 // ==============================
-// 🔐 환경변수에서 Discord 토큰 로드
+// 환경변수
 // ==============================
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 
@@ -61,9 +62,9 @@ client.on("messageCreate", (msg) => {
 });
 
 // ==============================
-// Discord 로그인 완료 로그
+// Discord 로그인 완료
 // ==============================
-client.once("ready", () => {
+client.once("clientReady", () => {
   console.log(`🤖 Discord bot logged in as ${client.user.tag}`);
 });
 
@@ -87,7 +88,7 @@ app.listen(PORT, () => {
 });
 
 // ==============================
-// Discord 봇 로그인 (토큰 있을 때만)
+// Discord 봇 로그인
 // ==============================
 if (!DISCORD_TOKEN) {
   console.warn("⚠️ DISCORD_TOKEN이 없어 Discord 봇은 실행되지 않습니다.");
