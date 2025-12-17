@@ -1,6 +1,7 @@
 // ==============================
 // 기본 모듈
 // ==============================
+console.log("DISCORD_TOKEN:", process.env.DISCORD_TOKEN ? "LOADED" : "MISSING");
 const express = require("express");
 const { Client, GatewayIntentBits } = require("discord.js");
 
