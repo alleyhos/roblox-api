@@ -8,6 +8,11 @@ const app = express();
 app.use(express.json());
 
 // ==============================
+// 🔐 환경변수에서 Discord 토큰 로드
+// ==============================
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
+
+// ==============================
 // 명령 큐 (Roblox로 전달)
 // ==============================
 let commandQueue = [];
@@ -42,11 +47,9 @@ client.on("messageCreate", (msg) => {
 
   if (cmd === "!kick") {
     payload = { type: "kick", username, reason };
-  } 
-  else if (cmd === "!ban") {
+  } else if (cmd === "!ban") {
     payload = { type: "ban", username, reason };
-  } 
-  else if (cmd === "!unban") {
+  } else if (cmd === "!unban") {
     payload = { type: "unban", username };
   }
 
@@ -75,18 +78,18 @@ app.get("/roblox", (req, res) => {
 });
 
 // ==============================
-// 서버 실행 (Railway)
+// 서버 실행
 // ==============================
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Roblox API running on ${PORT}`);
+  console.log(`🚀 Roblox API running on port ${PORT}`);
 });
 
 // ==============================
-// Discord 봇 로그인 (⚠️ 맨 마지막)
+// Discord 봇 로그인 (토큰 있을 때만)
 // ==============================
-if (!process.env.TOKEN) {
-  console.error("❌ TOKEN 환경변수가 설정되지 않았습니다.");
+if (!DISCORD_TOKEN) {
+  console.warn("⚠️ DISCORD_TOKEN이 없어 Discord 봇은 실행되지 않습니다.");
 } else {
-  client.login(process.env.TOKEN);
+  client.login(DISCORD_TOKEN);
 }
