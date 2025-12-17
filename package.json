@@ -1,11 +1,14 @@
 {
   "name": "roblox-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Discord bot + Roblox moderation API",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
     "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "dependencies": {
     "express": "^4.19.2",
